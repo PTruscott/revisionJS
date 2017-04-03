@@ -13,7 +13,7 @@ var slider = {
 
 //draws a slider
 function drawSlider(slider) {
-	strokeWeight(strokeWidth/2);
+	strokeWeight(3);
 	stroke(0);
 	var divX = slider.width*1/5;
 	if (slider.active) {
@@ -23,7 +23,7 @@ function drawSlider(slider) {
 	rect(slider.x,slider.y,divX,slider.height);
 	fill(250);
 	rect(slider.x+divX, slider.y, slider.width-divX, slider.height);
-	fill(80);
+    fill('#4f4f4f');
 	rect(slider.x+divX, slider.y-slider.height/3, slider.width*1.3/5, slider.height*5/3);
 }
 
