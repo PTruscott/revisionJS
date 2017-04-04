@@ -85,13 +85,9 @@ function line_intersects(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
     s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
     t = ( s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
 
-    if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
-    {
-        // Collision detected
-        return true;
-    }
+    return s >= 0 && s <= 1 && t >= 0 && t <= 1;
 
-    return false; // No collision
+     // No collision
 }
 
 //where A and B are points on a line with .x and .y and P is an array where [0] = x and [1] = y
