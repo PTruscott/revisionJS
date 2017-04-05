@@ -1,56 +1,3 @@
-//where centres are arrays where [0] = x and [1] = y
-//returns a location a valid distance away to be able to be placed
-function closestValidCircle(centre1, radius1, centre2, radius2) {
-    var theta = Math.atan((centre1[1]-centre2[1])/(centre1[0]-centre2[0]));
-
-    var newPoint = centre1;
-
-    if (centre1[0] > centre2[0]) {
-        newPoint[0] -= (radius1+radius2)*Math.cos(theta);
-    }
-    else {
-        newPoint[0] += (radius1+radius2)*Math.cos(theta);
-    }
-
-    var dTheta = toDegrees(theta);
-    if (dTheta < 0 && centre1[1] > centre2[1]) {
-        newPoint[1] += (radius1+radius2)*Math.sin(theta);
-    }
-    else if (dTheta > 0 && centre1[1] > centre2[1]){
-        newPoint[1] -= (radius1+radius2)*Math.sin(theta);
-    } 
-    else if (dTheta < 0 && centre1[1] < centre2[1]) {
-        newPoint[1] -= (radius1+radius2)*Math.sin(theta);
-    }
-
-    else {
-        newPoint[1] += (radius1+radius2)*Math.sin(theta);
-    }
-
-    return newPoint;
-}
-
-//centre [x,y] tl [x,y] br [x,y] 
-function snapToGrid(centre, tl, br, gridS) {
-    var newPoint = centre;
-    var x = tl[0]+(Math.floor((newPoint[0]-tl[0])/gridS))*gridS;
-    var y = tl[1]+(Math.floor((newPoint[1]-tl[1])/gridS))*gridS;
-
-    if (((newPoint[0]-tl[0])/gridS) % 1 > 0.5) {
-        x += gridS;
-    }
-    if (((newPoint[1]-tl[1])/gridS) % 1 > 0.5) {
-        y += gridS;
-    } 
-
-    newPoint[0] = x;
-    newPoint[1] = y;
-
-    //console.log(newPoint);
-
-    return newPoint;
-}
-
 //where centre is an array where [0] = x and [1] = y
 //where rect is an array where [0] = x1, [1] = y1, [2] = x2, [3] = y2
 function closetVertexInRectToPoint(centre, rect) {
@@ -136,6 +83,7 @@ function keepInsideBox(tl, br, point, radius) {
 
 //checks to see if a point[x,y] is inside a boc [x1,y1,x2,y2] and returns true if so
 function insideBox(box, point) {
+
     if (point[0] < box[0] || point[0] > box[2]) {
         return false;
     }

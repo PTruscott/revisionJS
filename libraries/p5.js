@@ -8403,7 +8403,7 @@ module.exports = {
   /**
    * HALF_PI is a mathematical constant with the value
    * 1.57079632679489661923. It is half the ratio of the
-   * circumference of a circle to its diameter. It is useful in
+   * circumference of a circle to its buffer. It is useful in
    * combination with the trigonometric functions sin() and cos().
    *
    * @property HALF_PI
@@ -8418,7 +8418,7 @@ module.exports = {
   /**
    * PI is a mathematical constant with the value
    * 3.14159265358979323846. It is the ratio of the circumference
-   * of a circle to its diameter. It is useful in combination with
+   * of a circle to its buffer. It is useful in combination with
    * the trigonometric functions sin() and cos().
    *
    * @property PI
@@ -8432,7 +8432,7 @@ module.exports = {
   /**
    * QUARTER_PI is a mathematical constant with the value 0.7853982.
    * It is one quarter the ratio of the circumference of a circle to
-   * its diameter. It is useful in combination with the trigonometric
+   * its buffer. It is useful in combination with the trigonometric
    * functions sin() and cos().
    *
    * @property QUARTER_PI
@@ -8447,7 +8447,7 @@ module.exports = {
   /**
    * TAU is an alias for TWO_PI, a mathematical constant with the
    * value 6.28318530717958647693. It is twice the ratio of the
-   * circumference of a circle to its diameter. It is useful in
+   * circumference of a circle to its buffer. It is useful in
    * combination with the trigonometric functions sin() and cos().
    *
    * @property TAU
@@ -8462,7 +8462,7 @@ module.exports = {
   /**
    * TWO_PI is a mathematical constant with the value
    * 6.28318530717958647693. It is twice the ratio of the
-   * circumference of a circle to its diameter. It is useful in
+   * circumference of a circle to its buffer. It is useful in
    * combination with the trigonometric functions sin() and cos().
    *
    * @property TWO_PI
@@ -27310,8 +27310,8 @@ var p5 = _dereq_('../core/core');
  * @example
  * <div><code>
  * var str = '20';
- * var diameter = float(str);
- * ellipse(width/2, height/2, diameter, diameter);
+ * var buffer = float(str);
+ * ellipse(width/2, height/2, buffer, buffer);
  * </code></div>
  */
 p5.prototype.float = function(str) {

@@ -1,12 +1,7 @@
 var fr = 60;
-var diameter = 40;
 
 var windowWidth = window.innerWidth.valueOf();
 var windowHeight = window.innerHeight.valueOf();
-var sidepanel = [0, 0, diameter*3, windowHeight];
-
-var mainColour = '#282828';
-var secondColour = '#4f4f4f';
 
 var snapSlider;
 var tempArrow;
@@ -49,51 +44,40 @@ function setup() {
 
     setCurrentQuestion(question2);
 
-    snapSlider = {
-		x:diameter/2,
-		y:10+diameter/4,
-		width:diameter,
-		height:diameter/2,
-		active:true,
-		colour: mainColour,
-		draw: function() {drawSlider(this)},
-		click: function(point) {sliderClick(this, point)}
-	};
-
     tempArrow = {
          x:20,
          y:100,
          radius:20,
          active:false,
-         colour: mainColour,
+         colour: colours[0],
          draw: function() {drawArrow(this)},
          click:function(point) {arrowClick(this, point)}
      };
 }
 
 function draw() {
-	background(mainColour);
+	background(colours[0]);
 
 	//noinspection JSUnresolvedFunction
     noStroke();
     //sidepanel
-    fill(secondColour);
+    fill(colours[2]);
 	rect(sidepanel[0], sidepanel[1], sidepanel[2], sidepanel[3]);
 
 
-	snapSlider.draw();
 	tempArrow.draw();
+	subsection.draw();
 
 	//noinspection JSUnresolvedFunction
-    noStroke();
+    strokeWeight(0.5);
     textSize(32);
     //noinspection JSUnresolvedVariable
     textAlign(CENTER, CENTER);
     fill("#ffffff");
-    text(currentQuestion.question, sidepanel[2]+diameter, diameter, windowWidth-diameter*2-sidepanel[2], windowHeight/2-diameter*2);
+    text(currentQuestion.question, sidepanel[2]+buffer, buffer, windowWidth-buffer*2-sidepanel[2], windowHeight/2-buffer*2);
 
     if (currentQuestion.displayAnswer) {
-        text(currentQuestion.answer, sidepanel[2]+diameter, windowHeight/2+diameter, windowWidth-diameter*2-sidepanel[2], windowHeight/2-diameter);
+        text(currentQuestion.answer, sidepanel[2]+buffer, windowHeight/2+buffer, windowWidth-buffer*2-sidepanel[2], windowHeight/2-buffer);
     }
 /*
     var s = "The quick brown fox jumped over the lazy dog.";
@@ -118,8 +102,8 @@ function mousePressed() {
 	//noinspection JSUnresolvedVariable
     var click = [mouseX, mouseY];
 
-	var side = snapSlider.click(click);
-	side = tempArrow.click(click);
+	var side = subsection.click(click);
+	if (!side) side = tempArrow.click(click);
 
 	if (!side && !insideBox(sidepanel, click)) {
 	    if (currentQuestion.displayAnswer) {
