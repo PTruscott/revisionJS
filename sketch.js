@@ -76,7 +76,6 @@ function draw() {
     text(currentQuestion.question, sidepanel[2]+diameter, diameter, windowWidth-diameter*2-sidepanel[2], windowHeight/2-diameter*2);
 
     if (currentQuestion.displayAnswer) {
-        console.log("Reached here:" + currentQuestion.answer);
         text(currentQuestion.answer, sidepanel[2]+diameter, windowHeight/2+diameter, windowWidth-diameter*2-sidepanel[2], windowHeight/2-diameter);
     }
 /*
