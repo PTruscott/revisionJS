@@ -10,9 +10,9 @@ function closestValidCircle(centre1, radius1, centre2, radius2) {
     }
     else {
         newPoint[0] += (radius1+radius2)*Math.cos(theta);
-    } 
+    }
 
-    dTheta = toDegrees(theta);
+    var dTheta = toDegrees(theta);
     if (dTheta < 0 && centre1[1] > centre2[1]) {
         newPoint[1] += (radius1+radius2)*Math.sin(theta);
     }
@@ -70,7 +70,6 @@ function closetVertexInRectToPoint(centre, rect) {
 //also used for point in circle by giving radius of 0 for point
 function circlesBisect(centre1, radius1, centre2, radius2) {
     return Math.abs(centre2[0] - centre1[0]) < (radius2 + radius1) && Math.abs(centre1[1] - centre2[1]) < (radius1 + radius2);
-
 }
 
 //where lines go from p0 to p1 and from p2 to p3

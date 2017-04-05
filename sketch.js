@@ -5,7 +5,11 @@ var windowWidth = window.innerWidth.valueOf();
 var windowHeight = window.innerHeight.valueOf();
 var sidepanel = [0, 0, diameter*3, windowHeight];
 
+var mainColour = '#282828';
+var secondColour = '#4f4f4f';
+
 var snapSlider;
+var tempArrow;
 
 var question = {
     module: "security",
@@ -38,6 +42,8 @@ function setup() {
 	//noinspection JSUnresolvedFunction
     frameRate(fr);
 
+    //loadFile();
+
 	questions.push(question);
     questions.push(question2);
 
@@ -49,23 +55,34 @@ function setup() {
 		width:diameter,
 		height:diameter/2,
 		active:true,
-		colour: 0,
+		colour: mainColour,
 		draw: function() {drawSlider(this)},
 		click: function(point) {sliderClick(this, point)}
 	};
+
+    tempArrow = {
+         x:20,
+         y:100,
+         radius:20,
+         active:false,
+         colour: mainColour,
+         draw: function() {drawArrow(this)},
+         click:function(point) {arrowClick(this, point)}
+     };
 }
 
 function draw() {
-	background('#282828');
+	background(mainColour);
 
 	//noinspection JSUnresolvedFunction
     noStroke();
     //sidepanel
-    fill('#4f4f4f');
+    fill(secondColour);
 	rect(sidepanel[0], sidepanel[1], sidepanel[2], sidepanel[3]);
 
 
 	snapSlider.draw();
+	tempArrow.draw();
 
 	//noinspection JSUnresolvedFunction
     noStroke();
@@ -102,6 +119,7 @@ function mousePressed() {
     var click = [mouseX, mouseY];
 
 	var side = snapSlider.click(click);
+	side = tempArrow.click(click);
 
 	if (!side && !insideBox(sidepanel, click)) {
 	    if (currentQuestion.displayAnswer) {
@@ -115,3 +133,21 @@ function mousePressed() {
 	//noinspection JSUnresolvedFunction
     redraw();
 }
+/*
+function loadFile() {
+
+    if (typeof window.FileReader !== 'function') {
+        alert("The file API isn't supported on this browser yet.");
+    }
+    else {
+        fr = new FileReader();
+        fr.onload = receivedText;
+        fr.readAsText("/home/peran/Downloads/Revision/Security/Security.json");
+    }
+
+    function receivedText(e) {
+        var lines = e.target.result;
+        questions = JSON.parse(lines);
+        console.log(questions);
+    }
+}*/

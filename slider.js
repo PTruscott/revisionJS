@@ -8,8 +8,9 @@ var slider = {
 	active:false,
 	colour: 0
 	draw: function() {drawSlider(this)},
-	click:function(point) {sliderClick(slider, point)},
-}*/
+	click:function(point) {sliderClick(this, point)}
+};
+*/
 
 //draws a slider
 function drawSlider(slider) {
