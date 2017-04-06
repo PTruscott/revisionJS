@@ -29,6 +29,7 @@ var currentQuestion = {
 };
 
 var questions = [];
+var selection;
 
 function setup() {
 
@@ -42,17 +43,9 @@ function setup() {
 	questions.push(question);
     questions.push(question2);
 
-    setCurrentQuestion(question2);
+    selection = createSelection(0, 0, "lecture", ["csa", "maths", "test"]);
 
-    tempArrow = {
-         x:20,
-         y:100,
-         radius:20,
-         active:false,
-         colour: colours[0],
-         draw: function() {drawArrow(this)},
-         click:function(point) {arrowClick(this, point)}
-     };
+    setCurrentQuestion(question2);
 }
 
 function draw() {
@@ -64,9 +57,7 @@ function draw() {
     fill(colours[2]);
 	rect(sidepanel[0], sidepanel[1], sidepanel[2], sidepanel[3]);
 
-
-	tempArrow.draw();
-	subsection.draw();
+	selection.draw();
 
 	//noinspection JSUnresolvedFunction
     strokeWeight(0.5);
@@ -102,10 +93,9 @@ function mousePressed() {
 	//noinspection JSUnresolvedVariable
     var click = [mouseX, mouseY];
 
-	var side = subsection.click(click);
-	if (!side) side = tempArrow.click(click);
+	selection.click(click);
 
-	if (!side && !insideBox(sidepanel, click)) {
+	if (!insideBox(sidepanel, click)) {
 	    if (currentQuestion.displayAnswer) {
             selectNewQuestion();
         }

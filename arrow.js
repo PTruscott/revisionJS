@@ -28,7 +28,7 @@ function drawArrow(arrow) {
 //where arrow is an object, and point is an array where 0=x 1=y
 //returns true if clicked and changes state of arrow
 function arrowClick(arrow, point) {
-    if (circlesBisect(point, 0, [arrow.x+arrow.radius/2, arrow.y+arrow.radius/2, arrow.radius], arrow.radius)) {
+    if (circlesBisect(point, 0, [arrow.x+arrow.radius/2, arrow.y+arrow.radius/2, arrow.radius], arrow.radius/2)) {
         arrow.active = !arrow.active;
         return true;
     }
