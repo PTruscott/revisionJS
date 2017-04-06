@@ -29,6 +29,7 @@ var currentQuestion = {
 };
 
 var questions = [];
+var selections = [];
 var selection;
 
 function setup() {
@@ -43,7 +44,8 @@ function setup() {
 	questions.push(question);
     questions.push(question2);
 
-    selection = createSelection(0, 0, "lecture", ["csa", "maths", "test"]);
+    selections.push(createSelection(0, 0, "lecture", ["csa", "maths", "test"]));
+    selections.push(createSelection(0, 0, "lecture2", ["csa2", "maths2", "test2"]));
 
     setCurrentQuestion(question2);
 }
@@ -57,7 +59,12 @@ function draw() {
     fill(colours[2]);
 	rect(sidepanel[0], sidepanel[1], sidepanel[2], sidepanel[3]);
 
-	selection.draw();
+	var x = 0;
+	var y = 0;
+    for (var i = 0; i < selections.length; i++) {
+        drawSelection(x, y, selections[i]);
+        y += getHeight(selections[i]);
+    }
 
 	//noinspection JSUnresolvedFunction
     strokeWeight(0.5);
@@ -93,7 +100,9 @@ function mousePressed() {
 	//noinspection JSUnresolvedVariable
     var click = [mouseX, mouseY];
 
-	selection.click(click);
+    for (var i = 0; i < selections.length; i++) {
+        selections[i].click(click);
+    }
 
 	if (!insideBox(sidepanel, click)) {
 	    if (currentQuestion.displayAnswer) {

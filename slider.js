@@ -49,3 +49,8 @@ function sliderClick(slider, point) {
 	}	
 	return false;
 }
+
+function updateSliderCoords(x, y, slider) {
+    slider.x = x;
+    slider.y = y;
+}

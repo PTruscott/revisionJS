@@ -20,7 +20,6 @@ function createSelection(x, y, name, modules) {
                 draw: function() {drawSlider(this)},
                 click: function(point) {sliderClick(this, point)}
             },
-            draw: function() {drawSubsection(this)},
             click: function(point) {subsectionClick(this, point)}
         };
         subsections.push(subsection);
@@ -30,9 +29,6 @@ function createSelection(x, y, name, modules) {
         y: y,
         width: sideWidth,
         baseHeight: subsectionHeight,
-        height: function () {
-            getHeight(this)
-        },
         name: name,
         active: true,
         subsections: subsections,
@@ -59,7 +55,6 @@ function createSelection(x, y, name, modules) {
             draw: function() {drawArrow(this)},
             click:function(point) {arrowClick(this, point)}
         },
-        draw: function() {drawSelection(this)},
         click:function(point) {selectionClick(this, point)},
         getActiveModules: function () {getActiveModules(this)}
     };
@@ -108,8 +103,12 @@ function selectionClick(s, point) {
     return false;
 }
 
-function drawSelection(s) {
+function drawSelection(x, y, s) {
     //noinspection JSUnresolvedFunction
+    s.x = x;
+    s.y = y;
+    updateArrowCoords(x+buffer/4, y+subsectionHeight/2-buffer/4, s.arrow);
+    updateSliderCoords(x+sideWidth - buffer * 1.5, y+subsectionHeight / 2 - buffer / 4, s.slider);
     noStroke();
     fill(colours[2]);
     strokeWeight(0);
@@ -124,7 +123,8 @@ function drawSelection(s) {
     text(s.name, s.x+buffer, s.y+s.baseHeight/2);
     if (s.active) {
         for (var i = 0; i < s.subsections.length; i++) {
-            drawSubsection(s.subsections[i]);
+            updateSliderCoords(x+sideWidth - buffer * 1.5, y+(i+1)*subsectionHeight+subsectionHeight / 2 - buffer / 4, s.subsections[i].slider);
+            drawSubsection(x, y+(i+1)*subsectionHeight, s.subsections[i]);
         }
     }
 }
@@ -136,6 +136,8 @@ function getHeight(selection) {
     return subsectionHeight;
 }
 
+/*
+//An example subsection
 var subsection = {
     x : 0,
     y : 0,
@@ -153,11 +155,13 @@ var subsection = {
         draw: function() {drawSlider(this)},
         click: function(point) {sliderClick(this, point)}
     },
-    draw: function() {drawSubsection(this)},
     click: function(point) {subsectionClick(this, point)}
 };
+*/
 
-function drawSubsection(ss) {
+function drawSubsection(x, y, ss) {
+    ss.x = x;
+    ss.y = y;
     //noinspection JSUnresolvedFunction
     noStroke();
     fill(colours[1]);

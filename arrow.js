@@ -35,3 +35,8 @@ function arrowClick(arrow, point) {
 
     return false;
 }
+
+function updateArrowCoords(x, y, arrow) {
+    arrow.x = x;
+    arrow.y = y;
+}
