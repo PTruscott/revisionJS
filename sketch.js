@@ -6,19 +6,6 @@ var windowHeight = window.innerHeight.valueOf();
 var snapSlider;
 var tempArrow;
 
-var question = {
-    module: "security",
-    lecture: "lecture",
-    question: "question?",
-    answer: "answer"
-};
-
-var question2 = {
-    module: "csa",
-    lecture: "lecture2",
-    question: "questions?",
-    answer: "answers"
-};
 
 var currentQuestion = {
 	module: "",
@@ -39,15 +26,10 @@ function setup() {
 	//noinspection JSUnresolvedFunction
     frameRate(fr);
 
-    //loadFile();
+    questions = getQuestions();
+    selections = getSelections(questions);
 
-	questions.push(question);
-    questions.push(question2);
-
-    selections.push(createSelection(0, 0, "lecture", ["csa", "maths", "test"]));
-    selections.push(createSelection(0, 0, "lecture2", ["csa2", "maths2", "test2"]));
-
-    setCurrentQuestion(question2);
+    setCurrentQuestion(questions[0]);
 }
 
 function draw() {
@@ -77,23 +59,48 @@ function draw() {
     if (currentQuestion.displayAnswer) {
         text(currentQuestion.answer, sidepanel[2]+buffer, windowHeight/2+buffer, windowWidth-buffer*2-sidepanel[2], windowHeight/2-buffer);
     }
-/*
-    var s = "The quick brown fox jumped over the lazy dog.";
-    fill('#ffffff');
-    text(s, 10, 10, 70, 80); // Text wraps within text box */
 }
 
 function setCurrentQuestion(question) {
-	currentQuestion.answer = question.answer;
-	currentQuestion.question = question.question;
-	currentQuestion.lecture = question.lecture;
-	currentQuestion.module = question.module;
-    currentQuestion.displayAnswer = false;
+    if (typeof question != 'undefined') {
+        currentQuestion.answer = question.answer;
+        currentQuestion.question = question.question;
+        currentQuestion.lecture = question.lecture;
+        currentQuestion.module = question.module;
+        currentQuestion.displayAnswer = false;
+    }
+    else {
+        currentQuestion.question = "You need to select some answers";
+        currentQuestion.answer = "Go on, select some";
+        currentQuestion.displayAnswer = true;
+    }
 }
 
 function selectNewQuestion() {
-    var i = getRandomInt(0, questions.length-1);
-    setCurrentQuestion(questions[i]);
+    var tempQuestions = [];
+    var activeModules = [];
+
+    for (var i = 0; i < selections.length; i++) {
+        var modules = getActiveModules(selections[i]);
+        if (modules.length != 0) {
+            activeModules.push([selections[i].name].concat(modules));
+        }
+    }
+
+    for (var j = 0; j < questions.length; j++) {
+        for (i = 0; i < activeModules.length; i++) {
+            if (activeModules[i][0] === questions[j].module) {
+                for (var k = 1; k < activeModules[i].length; k++) {
+                    if (activeModules[i][k] === questions[j].lecture) {
+                        tempQuestions.push(questions[j]);
+                    }
+                }
+            }
+        }
+    }
+
+    i = getRandomInt(0, tempQuestions.length-1);
+    setCurrentQuestion(tempQuestions[i]);
 }
 
 function mousePressed() {
@@ -116,6 +123,92 @@ function mousePressed() {
 	//noinspection JSUnresolvedFunction
     redraw();
 }
+
+function getQuestions() {
+    return [
+    {
+        module: "security",
+        lecture: "lecture",
+        question: "hey?",
+        answer: "security - lecture"
+    },
+    {
+        module: "csa",
+        lecture: "lecture2",
+        question: "questions?",
+        answer: "csa -lect2"
+    },
+    {
+        module: "security",
+        lecture: "lecture1",
+        question: "question?",
+        answer: "sec - lec1"
+    },
+    {
+        module: "security",
+        lecture: "lecture1",
+        question: "questionsss?",
+        answer: "sec - lec1"
+    },
+    {
+        module: "",
+        lecture: "lecture2",
+        question: "diem?",
+        answer: "unknown -lec2"
+    },
+    {
+        module: "csa",
+        lecture: "",
+        question: "hmmm",
+        answer: "csa - unkown"
+    }
+    ];
+}
+
+function getSelections(questions) {
+    var modules = [];
+    for (var i = 0; i < questions.length; i++) {
+        if (questions[i].module === "") {
+            questions[i].module = "Unknown";
+        }
+        if (questions[i].lecture === "") {
+            questions[i].lecture = "Unknown";
+        }
+
+        var index = -1;
+
+        for (var j = 0; j < modules.length; j++) {
+            if (modules[j][0] === questions[i].module) {
+                var index2 = -1;
+                for (var k = 1; k < modules[j].length; k++) {
+                    if (modules[j][k] === questions[i].lecture) {
+                        index2 = k;
+                        break;
+                    }
+                }
+                if (index2 === -1) {
+                    modules[j].push(questions[i].lecture);
+                }
+                index = j;
+                break;
+            }
+        }
+        if (index === -1) {
+            modules.push([questions[i].module, questions[i].lecture]);
+        }
+    }
+
+    var selections = [];
+    for (i = 0; i < modules.length; i++) {
+        var name = modules[i][0];
+        modules[i].splice(0, 1);
+        modules[i].sort();
+        selections.push(createSelection(0, subsectionHeight*i, name, modules[i]));
+    }
+
+    return selections;
+}
+
 /*
 function loadFile() {
 

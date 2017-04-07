@@ -30,7 +30,7 @@ function createSelection(x, y, name, modules) {
         width: sideWidth,
         baseHeight: subsectionHeight,
         name: name,
-        active: true,
+        active: false,
         subsections: subsections,
         slider: {
             x: sideWidth - buffer * 1.5,
@@ -50,13 +50,12 @@ function createSelection(x, y, name, modules) {
             x:x+buffer/4,
             y: y+subsectionHeight/2-buffer/4,
             radius:buffer/2,
-            active:true,
+            active:false,
             colour: colours[0],
             draw: function() {drawArrow(this)},
             click:function(point) {arrowClick(this, point)}
         },
         click:function(point) {selectionClick(this, point)},
-        getActiveModules: function () {getActiveModules(this)}
     };
 }
 
