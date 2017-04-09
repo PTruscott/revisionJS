@@ -125,44 +125,7 @@ function mousePressed() {
 }
 
 function getQuestions() {
-    return [
-    {
-        module: "security",
-        lecture: "lecture",
-        question: "hey?",
-        answer: "security - lecture"
-    },
-    {
-        module: "csa",
-        lecture: "lecture2",
-        question: "questions?",
-        answer: "csa -lect2"
-    },
-    {
-        module: "security",
-        lecture: "lecture1",
-        question: "question?",
-        answer: "sec - lec1"
-    },
-    {
-        module: "security",
-        lecture: "lecture1",
-        question: "questionsss?",
-        answer: "sec - lec1"
-    },
-    {
-        module: "",
-        lecture: "lecture2",
-        question: "diem?",
-        answer: "unknown -lec2"
-    },
-    {
-        module: "csa",
-        lecture: "",
-        question: "hmmm",
-        answer: "csa - unkown"
-    }
-    ];
+    return vision.concat(security);
 }
 
 function getSelections(questions) {
