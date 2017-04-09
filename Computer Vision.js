@@ -115,31 +115,31 @@ var vision = [
 
 ,	{ lecture:"Edge Detection", module:"Vision", question:"How do two 1D Guassian filters work in 2D?", answer:"You can convolve the two filters over the image seperately, which gives the same result.  This is more efficient." } 
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"What does \"Edge Direction\" mean?", answer:"The direction perpendicular to the direction of maximum intensity change." } 
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"What does \"Edge Direction\" mean?", answer:"The direction perpendicular to the direction of maximum intensity change." } 
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"What does \"Edge Normal\" mean?", answer:"The direction of maximum intensity change." } 
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"What does \"Edge Normal\" mean?", answer:"The direction of maximum intensity change." } 
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"What does \"Edge Strenth\" mean?", answer:"The local image contrast along the edge normal." } 
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"What does \"Edge Strenth\" mean?", answer:"The local image contrast along the edge normal." } 
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"What does \"Edge Position\" mean?", answer:"The position at which the edge is located." } 
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"What does \"Edge Position\" mean?", answer:"The position at which the edge is located." } 
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"What are the four main steps in Edge Detection?", answer:"Smoothing (to remove noise); enhancement to sharpen the edges; thresholding to determine which edges to discard as noise; and localisation to determine the edge position." }
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"What are the four main steps in Edge Detection?", answer:"Smoothing (to remove noise); enhancement to sharpen the edges; thresholding to determine which edges to discard as noise; and localisation to determine the edge position." }
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"How do you detect edges using the first derivative?", answer:"You can detect the local maxima or minima of the first derivitive." }
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"How do you detect edges using the first derivative?", answer:"You can detect the local maxima or minima of the first derivitive." }
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"How do you detect edges using the second derivative?", answer:"The edge will be at the zero crossing of the second derivitive." }
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"How do you detect edges using the second derivative?", answer:"The edge will be at the zero crossing of the second derivitive." }
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"What is the difference between a 2D Prewitt and a 2D Sobel mask?", answer:"Sobel puts more weight to the nearest neighbour for the final value." } 
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"What is the difference between a 2D Prewitt and a 2D Sobel mask?", answer:"Sobel puts more weight to the nearest neighbour for the final value." } 
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"What are the three criteria for Optimal Edge Detection?", answer:"Good detection (No false positive or negatives); good localisation (detected edges must be close to true edges); and a single response (only one local minima/maxima per edge)." } 
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"What are the three criteria for Optimal Edge Detection?", answer:"Good detection (No false positive or negatives); good localisation (detected edges must be close to true edges); and a single response (only one local minima/maxima per edge)." } 
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"What are the steps of Canny Edge Detection?", answer:"Smoothing with a gausian mask and then get the derivitive.  Find gradient magnitude, apply non-maxima suppression then apply hysteresis thresholding and edge linking." } 
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"What are the steps of Canny Edge Detection?", answer:"Smoothing with a gausian mask and then get the derivitive.  Find gradient magnitude, apply non-maxima suppression then apply hysteresis thresholding and edge linking." } 
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"What is Hysteresis thresholding?", answer:"Has a low and a high threshold, starts out marking a high threshold then follows the lines along tracing a low threshold finding fainter but still genuine lines." } 
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"What is Hysteresis thresholding?", answer:"Has a low and a high threshold, starts out marking a high threshold then follows the lines along tracing a low threshold finding fainter but still genuine lines." } 
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"What is the \"Hough\" transform?", answer:"A common approach to finding paramatised line segments." } 
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"What is the \"Hough\" transform?", answer:"A common approach to finding paramatised line segments." } 
 
-,	{ lecture:"Advanced Edge Detection", module:"Vision", question:"Explain how \"Hough\" transform works to identify lines", answer:"For every pixel in the image, other pixels \"bid\" on potential lines that connect to it.  The line with the most \"bids\" is the one that is accepted." } 
+,	{ lecture:"Adv Edge Detection", module:"Vision", question:"Explain how \"Hough\" transform works to identify lines", answer:"For every pixel in the image, other pixels \"bid\" on potential lines that connect to it.  The line with the most \"bids\" is the one that is accepted." } 
 
 ,	{ lecture:"Face Recognition", module:"Vision", question:"What is an Eigenface?", answer:"A face is a weighted combination of \"base\" faces.  Base faces are known as \"Eigenfaces\"." } 
 

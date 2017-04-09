@@ -133,6 +133,7 @@ function getQuestions() {
 
 function getSelections(questions) {
     var modules = [];
+    textSize(24);
     for (var i = 0; i < questions.length; i++) {
         if (questions[i].module === "") {
             questions[i].module = "Unknown";
@@ -140,6 +141,8 @@ function getSelections(questions) {
         if (questions[i].lecture === "") {
             questions[i].lecture = "Unknown";
         }
+        questions[i].lecture = shrinkText(questions[i].lecture, buffer*4.3);
+        questions[i].module = shrinkText(questions[i].module, buffer*4.3);
 
         var index = -1;
 
@@ -173,4 +176,16 @@ function getSelections(questions) {
     }
 
     return selections;
+}
+
+function shrinkText(text, maxWidth) {
+    if (textWidth(text) > maxWidth) {
+        var tempText = text.substring(0, text.length-1);
+        while (textWidth(tempText+"...") > maxWidth) {
+            tempText = tempText.substring(0, tempText.length-1);
+        }
+        text = tempText+"...";
+    }
+
+    return text;
 }
