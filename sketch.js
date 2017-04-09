@@ -70,7 +70,7 @@ function setCurrentQuestion(question) {
         currentQuestion.displayAnswer = false;
     }
     else {
-        currentQuestion.question = "You need to select some answers";
+        currentQuestion.question = "You need to select some questions";
         currentQuestion.answer = "Go on, select some";
         currentQuestion.displayAnswer = true;
     }
@@ -100,6 +100,9 @@ function selectNewQuestion() {
     }
 
     i = getRandomInt(0, tempQuestions.length-1);
+    if (tempQuestions[i].question === currentQuestion.question) {
+        i = (i+1)%tempQuestions.length;
+    }
     setCurrentQuestion(tempQuestions[i]);
 }
 
@@ -171,22 +174,3 @@ function getSelections(questions) {
 
     return selections;
 }
-
-/*
-function loadFile() {
-
-    if (typeof window.FileReader !== 'function') {
-        alert("The file API isn't supported on this browser yet.");
-    }
-    else {
-        fr = new FileReader();
-        fr.onload = receivedText;
-        fr.readAsText("/home/peran/Downloads/Revision/Security/Security.json");
-    }
-
-    function receivedText(e) {
-        var lines = e.target.result;
-        questions = JSON.parse(lines);
-        console.log(questions);
-    }
-}*/
