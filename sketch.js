@@ -34,7 +34,6 @@ function setup() {
 
 function draw() {
 	background(colours[0]);
-
 	//noinspection JSUnresolvedFunction
     noStroke();
     //sidepanel
@@ -48,7 +47,11 @@ function draw() {
         y += getHeight(selections[i]);
     }
 
-	//noinspection JSUnresolvedFunction
+    button.draw();
+    button1.draw();
+
+
+    //noinspection JSUnresolvedFunction
     strokeWeight(0.5);
     textSize(32);
     //noinspection JSUnresolvedVariable
