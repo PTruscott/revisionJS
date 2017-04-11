@@ -1,18 +1,18 @@
-var button= {
+var btnReset = {
     x: windowWidth-buffer*4-buttonBuffer,
     y: buttonBuffer,
     width: buffer*4,
     height: buttonHeight,
-    name: "button",
+    name: "Reset",
     draw: function() {drawButton(this)}
 };
 
-var button1 = {
+var btnDone = {
     x: windowWidth-buffer*4-buttonBuffer,
     y: subsectionHeight+buttonBuffer,
     width: buffer*4,
     height: buttonHeight,
-    name: "button",
+    name: "Learnt",
     draw: function() {drawButton(this)}
 };
 

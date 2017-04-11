@@ -47,9 +47,8 @@ function draw() {
         y += getHeight(selections[i]);
     }
 
-    button.draw();
-    button1.draw();
-
+    btnReset.draw();
+    btnDone.draw();
 
     //noinspection JSUnresolvedFunction
     strokeWeight(0.5);
@@ -74,8 +73,21 @@ function setCurrentQuestion(question) {
     }
     else {
         currentQuestion.question = "You need to select some questions";
-        currentQuestion.answer = "Go on, select some";
+        currentQuestion.answer = "Equally, you may have marked all questions as \"learnt\".";
         currentQuestion.displayAnswer = true;
+    }
+}
+
+function removeQuestion(question) {
+    var index = -1;
+    for (var i = 0; i < questions.length; i++) {
+        if (questions[i].answer === question.answer && questions[i].question == question.question) {
+            index = i;
+            break;
+        }
+    }
+    if (index != -1) {
+        questions.splice(index, 1);
     }
 }
 
@@ -103,7 +115,7 @@ function selectNewQuestion() {
     }
 
     i = getRandomInt(0, tempQuestions.length-1);
-    if (tempQuestions[i].question === currentQuestion.question) {
+    if (typeof tempQuestions[i] != 'undefined' && tempQuestions[i].question === currentQuestion.question) {
         i = (i+1)%tempQuestions.length;
     }
     setCurrentQuestion(tempQuestions[i]);
@@ -117,7 +129,14 @@ function mousePressed() {
         selections[i].click(click);
     }
 
-	if (!insideBox(sidepanel, click)) {
+    if (buttonClick(btnReset, click)) {
+        questions = getQuestions();
+    }
+    else if (buttonClick(btnDone, click)) {
+        removeQuestion(currentQuestion);
+        selectNewQuestion();
+    }
+    else if (!insideBox(sidepanel, click)) {
 	    if (currentQuestion.displayAnswer) {
             selectNewQuestion();
         }
