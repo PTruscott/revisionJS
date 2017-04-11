@@ -87,7 +87,6 @@ function selectionClick(s, point) {
                 if (s.slider.active) {
                     s.subsections[i].active = true;
                     s.subsections[i].slider.active = true;
-                    console.log("Making active");
                 }
                 else {
                     s.subsections[i].active = false;
