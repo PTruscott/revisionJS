@@ -49,6 +49,7 @@ function draw() {
 
     btnReset.draw();
     btnDone.draw();
+    help.draw();
 
     //noinspection JSUnresolvedFunction
     strokeWeight(0.5);
@@ -63,6 +64,34 @@ function draw() {
     }
 }
 
+function mousePressed() {
+	//noinspection JSUnresolvedVariable
+    var click = [mouseX, mouseY];
+
+    for (var i = 0; i < selections.length; i++) {
+        selections[i].click(click);
+    }
+
+    if (buttonClick(btnReset, click)) {
+        questions = getQuestions();
+    }
+    else if (buttonClick(btnDone, click)) {
+        removeQuestion(currentQuestion);
+        selectNewQuestion();
+    }
+    else if (!clickHelp(help, click) && !insideBox(sidepanel, click)) {
+	    if (currentQuestion.displayAnswer) {
+            selectNewQuestion();
+        }
+        else {
+	        currentQuestion.displayAnswer = true;
+        }
+    }
+
+	//noinspection JSUnresolvedFunction
+    redraw();
+}
+
 function setCurrentQuestion(question) {
     if (typeof question != 'undefined') {
         currentQuestion.answer = question.answer;
@@ -75,19 +104,6 @@ function setCurrentQuestion(question) {
         currentQuestion.question = "You need to select some questions";
         currentQuestion.answer = "Equally, you may have marked all questions as \"learnt\".";
         currentQuestion.displayAnswer = true;
-    }
-}
-
-function removeQuestion(question) {
-    var index = -1;
-    for (var i = 0; i < questions.length; i++) {
-        if (questions[i].answer === question.answer && questions[i].question == question.question) {
-            index = i;
-            break;
-        }
-    }
-    if (index != -1) {
-        questions.splice(index, 1);
     }
 }
 
@@ -121,32 +137,17 @@ function selectNewQuestion() {
     setCurrentQuestion(tempQuestions[i]);
 }
 
-function mousePressed() {
-	//noinspection JSUnresolvedVariable
-    var click = [mouseX, mouseY];
-
-    for (var i = 0; i < selections.length; i++) {
-        selections[i].click(click);
-    }
-
-    if (buttonClick(btnReset, click)) {
-        questions = getQuestions();
-    }
-    else if (buttonClick(btnDone, click)) {
-        removeQuestion(currentQuestion);
-        selectNewQuestion();
-    }
-    else if (!insideBox(sidepanel, click)) {
-	    if (currentQuestion.displayAnswer) {
-            selectNewQuestion();
-        }
-        else {
-	        currentQuestion.displayAnswer = true;
+function removeQuestion(question) {
+    var index = -1;
+    for (var i = 0; i < questions.length; i++) {
+        if (questions[i].answer === question.answer && questions[i].question == question.question) {
+            index = i;
+            break;
         }
     }
-
-	//noinspection JSUnresolvedFunction
-    redraw();
+    if (index != -1) {
+        questions.splice(index, 1);
+    }
 }
 
 function getQuestions() {
