@@ -1,18 +1,3 @@
-//where centre is an array where [0] = x and [1] = y
-//where rect is an array where [0] = x1, [1] = y1, [2] = x2, [3] = y2
-function closetVertexInRectToPoint(centre, rect) {
-    var newPoint = [];
-    newPoint[0] = rect[0];
-    newPoint[1] = rect[1];
-    if (Math.abs(centre[0]-rect[0]) > Math.abs(centre[0]-rect[2])) {
-        newPoint[0] = rect[2];
-    }  
-    if (Math.abs(centre[1]-rect[1]) > Math.abs(centre[1]-rect[3])) {
-        newPoint[1] = rect[3];
-    }  
-    return newPoint;
-}
-
 //where centres are arrays where [0] = x and [1] = y
 //also used for point in circle by giving radius of 0 for point
 function circlesBisect(centre1, radius1, centre2, radius2) {
@@ -53,33 +38,7 @@ function getClosestPointOnLine(A, B, P) {
 
   	return [temp1, temp2];
 }
-  
-//locks the point so it remains inside the box specified
-//top left, bottom right, and point are all arrays where [0] = x and [1] = y
-function keepInsideBox(tl, br, point, radius) {
-    var newPoint = point;
-    for (var i = 0; i < tl.length; i++) {
-      if (isNaN(tl[i]) || isNaN(br[i]) || isNaN(point[i]) || isNaN(radius)) {
-          console.warn("Number is NaN insideBox");
-      }
-    }
 
-    if (point[0] - radius < tl[0]) {
-        newPoint[0] = tl[0] + radius;
-    }
-    else if (point[0] + radius > br[0]) {
-        newPoint[0] = br[0]-radius;
-    }
-
-    if (point[1] - radius < tl[1]) {
-        newPoint[1] = tl[1] + radius;
-    }
-    else if (point[1] + radius > br[1]) {
-        newPoint[1] = br[1]-radius;
-
-    }
-    return newPoint;
-}
 
 //checks to see if a point[x,y] is inside a boc [x1,y1,x2,y2] and returns true if so
 function insideBox(box, point) {
