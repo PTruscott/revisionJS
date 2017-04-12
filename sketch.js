@@ -49,7 +49,6 @@ function draw() {
 
     btnReset.draw();
     btnDone.draw();
-    help.draw();
 
     //noinspection JSUnresolvedFunction
     strokeWeight(0.5);
@@ -62,6 +61,8 @@ function draw() {
     if (currentQuestion.displayAnswer) {
         text(currentQuestion.answer, sidepanel[2]+buffer, windowHeight/2+buffer, windowWidth-buffer*2-sidepanel[2], windowHeight/2-buffer);
     }
+
+    help.draw();
 }
 
 function mousePressed() {
