@@ -33,6 +33,8 @@ function setup() {
 }
 
 function draw() {
+
+
 	background(colours[0]);
 	//noinspection JSUnresolvedFunction
     noStroke();
