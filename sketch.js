@@ -1,5 +1,3 @@
-var fr = 60;
-
 var windowWidth = window.innerWidth.valueOf();
 var windowHeight = window.innerHeight.valueOf();
 
@@ -23,9 +21,6 @@ function setup() {
 
 	//noinspection JSUnresolvedFunction
     createCanvas(windowWidth, windowHeight);
-	//noinspection JSUnresolvedFunction
-    frameRate(fr);
-
     questions = getQuestions();
     selections = getSelections(questions);
 

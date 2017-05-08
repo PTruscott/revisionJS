@@ -1,4 +1,4 @@
-
+var vision = [
 	{ lecture:"Intro", module:"Vision", question:"What are some main difficulties with computer vision?", answer:"Cope with imperfect images; reverse imaging process; and deal with discrete information in a continuous world." } 
 
 ,	{ lecture:"Intro", module:"Vision", question:"What are some applications of computer vision?", answer:"Automated navigation; scene recognition; document processing; quality control etc.." } 
